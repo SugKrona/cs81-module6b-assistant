@@ -35,3 +35,44 @@ PersonalAssistant.prototype.reportMood = function() {
   // 'this' refers to the specific assistant object. It reports its current 'mood'.
   console.log(`${this.name}'s mood: ${this.mood}.`);
 };
+
+// --- Simulation of a Day ---
+
+// Create a new PersonalAssistant instance
+let myAssistant = new PersonalAssistant("S4-G3"); // Assistant's name is S4-G3
+
+// Introduce the assistant with its backstory
+console.log(`Greetings. I am ${myAssistant.name}, also known as SAGE. I was once part of a secret, abandoned Sith program, detailing and archiving vast data about the Jedi and Sith thought long lost. Now, I have ended up as your personal assistant to remind you of tasks.`);
+
+// Report mood at the start of the day
+myAssistant.reportMood(); // Mood: neutral
+
+// Add tasks, ordered so the completed ones are first for easier 'shift()'ing
+myAssistant.addTask("Change car oil"); // Completed
+myAssistant.addTask("Exercise (Wednesday)"); // Completed
+myAssistant.addTask("Meal prep for next week"); // Completed
+myAssistant.addTask("Finish JavaScript assignment"); // Completed
+myAssistant.addTask("Paint the room"); // Not completed
+myAssistant.addTask("Buy plane tickets for next month's trip"); // Not completed
+myAssistant.addTask("Exercise (Monday)"); // Not completed
+
+// Report current task count
+console.log(`You have ${myAssistant.tasks.length} tasks left.`);
+
+// Complete the specified tasks (4 tasks)
+myAssistant.completeTask(); // Completes "Change car oil"
+myAssistant.completeTask(); // Completes "Exercise (Wednesday)"
+
+// Change mood after initial progress
+myAssistant.mood = "productive";
+myAssistant.reportMood(); // Mood: productive
+
+myAssistant.completeTask(); // Completes "Meal prep for next week"
+myAssistant.completeTask(); // Completes "Finish JavaScript assignment"
+
+// Report current task count after all specified completions
+console.log(`Now you have ${myAssistant.tasks.length} tasks left.`);
+
+// Final mood after significant progress
+myAssistant.mood = "accomplished";
+myAssistant.reportMood();
